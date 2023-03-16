@@ -17,7 +17,7 @@ pip_pyinstaller.bind('<Button-1>', pyinstaller)
 
 root_update = Button(root, text="pip检测升级")
 def update(e):
-    messagebox.showerror("pip update", "无法使用！（正在测试）")
+    messagebox.showerror("pip update", "无法使用！程序出现BUG")
     pass
     '''sc = Tk()
     text1 = Text(sc)
@@ -87,9 +87,16 @@ def update_root(e):
 pip_update.bind('<Button-1>', update_root)
 
 
-'''remove_1 = Tk()
+# 删除模块代码
 remove_open = Button(root ,text='删除库模式')
 def remove(e):
+    # 初始化程序和定义按钮
+    remove_1 = Tk()
+    remove_pygame = Button(remove_1, text='删除pygame')
+    remove_pyinstaller = Button(remove_1, text='删除pyinstaller')
+    remove_pyqt = Button(remove_1, text='删除pyqt5')
+    remove_Requests = Button(remove_1, text='删除Requests')
+    remove_exit = Button(remove_1, text='返回')
     # def处理运行代码
     def pyinstaller_remove(e):
         os.system('pip uninstall pyinstaller')
@@ -103,45 +110,34 @@ def remove(e):
         os.system('pip uninstall pyqt5')
         messagebox.showinfo('remove', '删除完成')
         pass
+    def Requests_remove(e):
+        os.system('pip uninstall Requests')
+        messagebox.showinfo('remove', '删除完成')
+        pass
+    def quit_remove(e):
+        remove_1.destroy()
+        pass
+    # 定义按钮的def
     remove_pygame.bind('<Button-1>',pygame_remove)
     remove_pyinstaller.bind('<Button-1>', pyinstaller_remove)
-    remove_pyqt5.bind('<Button-1>', pyqt_remove)
+    remove_pyqt.bind('<Button-1>', pyqt_remove)
+    remove_Requests.bind('<Button-1>',Requests_remove)
+    remove_exit.bind('<Button-1>', quit_remove)
+    # 放置remove模块的按钮
     remove_pygame.pack()
-    remove_pyqt5.pack()
+    remove_pyqt.pack()
     remove_pyinstaller.pack()
+    remove_Requests.pack()
+    remove_exit.pack()
     # 加载删除库的Gui
     remove_1.title('remove')
     remove_1.geometry('200x200+450+400')
     remove_1.mainloop()
     pass
-remove_open.bind('<Button-1>', remove)'''
-
-remove_pyinstaller = Button(root, text='删除pyinstaller库')
-remove_pygame = Button(root, text='删除pygame')
-remove_pyqt5 = Button(root, text='删除pyqt5')
-remove_Requests = Button(root, text='删除Requests')
-def pygame_remove(e):
-    os.system('pip uninstall pygame')
-    messagebox.showinfo('remove', '删除完成')
-    pass
-def pyinstaller_remove(e):
-    os.system('pip uninstall pyinstaller')
-    messagebox.showinfo('remove', '删除完成')
-    pass
-def pyqt_remove(e):
-    os.system('pip uninstall pyqt5')
-    messagebox.showinfo('remove', '删除完成')
-    pass
-def Requests_remove(e):
-    os.system('pip uninstall Requests')
-    messagebox.showinfo('remove', '删除完成')
-    pass
-remove_pygame.bind('<Button-1>', pygame_remove)
-remove_pyinstaller.bind('<Button-1>', pyinstaller_remove)
-remove_pyqt5.bind('<Button-1>', pyqt_remove)
-remove_Requests.bind('<Button-1>', Requests_remove)    
+remove_open.bind('<Button-1>', remove)    
 
 
+# 安装Requests模块
 pip_Requests = Button(root, text='Requests安装')
 def Requests(e):
     os.system('pip install Requests')
@@ -150,21 +146,18 @@ def Requests(e):
 pip_Requests.bind('<Button-1>', Requests)
 
 
-
-# root_update.pack()
+# 按钮放置
+root_update.pack()
 pip_pygame.pack()
 pip_pyqt.pack()
 pip_pyinstaller.pack()
 pip_Requests.pack()
-# remove_open.pack()
-remove_pygame.pack()
-remove_pyinstaller.pack()
-remove_pyqt5.pack()
-remove_Requests.pack()
+remove_open.pack()
 pip_update.pack()
 pip_quit.pack()
 
 
+# 加载程序GUI
 root.title('pip安装助手')
 root.geometry('200x350+300+600')
 root.mainloop()
