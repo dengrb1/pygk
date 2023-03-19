@@ -5,12 +5,14 @@ import os
 
 
 root = Tk()
+ok = '安装完成'
+ok2 = '删除完成'
 
 
 pip_pyinstaller = Button(root, text="pyinstaller安装")
 def pyinstaller(e):
     os.system("pip install pyinstaller")
-    messagebox.showinfo("pip", "程序安装完成")
+    messagebox.showinfo("pip", ok)
     pass
 pip_pyinstaller.bind('<Button-1>', pyinstaller)
 
@@ -47,7 +49,7 @@ root_update.bind('<Button-1>', update)
 pip_pygame = Button(root, text="pygame库安装")
 def pygame(e):
     os.system("pip install pygame")
-    messagebox.showwarning("pygame install", "pygame安装完成")
+    messagebox.showwarning("pygame install", ok)
     pass
 pip_pygame.bind('<Button-1>', pygame)
 
@@ -55,7 +57,7 @@ pip_pygame.bind('<Button-1>', pygame)
 pip_pyqt = Button(root, text="pyqt5安装")
 def pyqt5(e):
     os.system("pip install pyqt5")
-    messagebox.showwarning("pip pyqt5", "pyqt5安装成功")
+    messagebox.showwarning("pip pyqt5", ok)
     pass
 pip_pyqt.bind('<Button-1>', pyqt5)
 
@@ -75,8 +77,12 @@ def update_root(e):
     la_2 = Label(update_window_1, text='''1.0 程序制作完成
     1.2 程序新增pyqt5、pygame、pyinstaller安装
     1.3 程序加入更新界面，里面只显示更新的内容，不会自动更新！
-    1.4 新增Requests库安装和删除''')
-    la_3 = Label(update_window_1, text="当前版本：1.4")
+    1.4 新增Requests库安装和删除
+    1.5 新增wxpython库安装和删除
+    1.6 加入关于模块
+    1.7 新增一个小彩蛋
+    stop 本程序是最后一次更新，此版本已完结''')
+    la_3 = Label(update_window_1, text="当前版本：1.5")
     la_1.pack()
     la_2.pack()
     la_3.pack()
@@ -96,38 +102,45 @@ def remove(e):
     remove_pyinstaller = Button(remove_1, text='删除pyinstaller')
     remove_pyqt = Button(remove_1, text='删除pyqt5')
     remove_Requests = Button(remove_1, text='删除Requests')
+    remove_tqdm = Button(remove_1, text='删除tqdm')
     remove_exit = Button(remove_1, text='返回')
     # def处理运行代码
     def pyinstaller_remove(e):
         os.system('pip uninstall pyinstaller')
-        messagebox.showinfo('remove', '删除完成')
+        messagebox.showinfo('remove', ok2)
         pass
     def pygame_remove(e):
         os.system('pip uninstall pygame')
-        messagebox.showinfo('remove', '删除完成')
+        messagebox.showinfo('remove', ok2)
         pass
     def pyqt_remove(e):
         os.system('pip uninstall pyqt5')
-        messagebox.showinfo('remove', '删除完成')
+        messagebox.showinfo('remove', ok2)
         pass
     def Requests_remove(e):
         os.system('pip uninstall Requests')
-        messagebox.showinfo('remove', '删除完成')
+        messagebox.showinfo('remove', ok2)
         pass
     def quit_remove(e):
         remove_1.destroy()
+        pass
+    def tqdm_remove(e):
+        os.system('pip uninstall tqdm')
+        messagebox.showinfo('pip uninstall', ok2)
         pass
     # 定义按钮的def
     remove_pygame.bind('<Button-1>',pygame_remove)
     remove_pyinstaller.bind('<Button-1>', pyinstaller_remove)
     remove_pyqt.bind('<Button-1>', pyqt_remove)
     remove_Requests.bind('<Button-1>',Requests_remove)
+    remove_tqdm.bind('<Button-1>', tqdm_remove)
     remove_exit.bind('<Button-1>', quit_remove)
     # 放置remove模块的按钮
     remove_pygame.pack()
     remove_pyqt.pack()
     remove_pyinstaller.pack()
     remove_Requests.pack()
+    remove_tqdm.pack()
     remove_exit.pack()
     # 加载删除库的Gui
     remove_1.title('remove')
@@ -141,9 +154,54 @@ remove_open.bind('<Button-1>', remove)
 pip_Requests = Button(root, text='Requests安装')
 def Requests(e):
     os.system('pip install Requests')
-    messagebox.showinfo('pip Requests', 'Requests安装完成')
+    messagebox.showinfo('pip Requests', ok)
     pass
 pip_Requests.bind('<Button-1>', Requests)
+
+
+# 安装wxPython模块
+pip_wxPython = Button(root, text='wxPython安装')
+def wxPython(e):
+    os.system('pip installl wxPython')
+    messagebox.showinfo('pip wxPython', ok)
+    pass
+pip_wxPython.bind('<Button-1>', wxPython)
+
+
+# 关于模块
+pip_gk = Button(root, text='关于')
+def gk(e):
+    gk_window = Tk()
+    gk_1 = Label(gk_window, text='pip helper')
+    gk_2 = Label(gk_window, text='''此程序是由dengrb1开发和编写
+    开源地址和教程:https://github.com/dengrb1/pygk
+    作者GitHub：https://github.com/dengrb1
+    本程序已停止了更新，请前往github仓库下载最新的pip安装助手重置版
+
+    @ 2023-2024 由pygk团队的dengrb1拥有所有权''')
+    gk_1.pack()
+    gk_2.pack()
+    gk_window.title('关于')
+    gk_window.geometry('310x300')
+    gk_window.mainloop()
+    pass
+pip_gk.bind('<Button-1>', gk)
+
+
+# 彩蛋程序
+pip_cd = Button(root , text='彩蛋解锁')
+def cd(e):
+    messagebox.showinfo('彩蛋', '梁子依是sb中的sb中的大大大sb')
+    pass
+pip_cd.bind('<Button-1>', cd)
+
+
+pip_tqdm = Button(root, text='tqdm安装')
+def tqdm(e):
+    os.system('pip install tqdm')
+    messagebox.showinfo('pip install', ok)
+    pass
+pip_tqdm.bind('<Button-1>', tqdm)
 
 
 # 按钮放置
@@ -152,7 +210,10 @@ pip_pygame.pack()
 pip_pyqt.pack()
 pip_pyinstaller.pack()
 pip_Requests.pack()
+pip_wxPython.pack()
+pip_tqdm.pack()
 remove_open.pack()
+pip_cd.pack()
 pip_update.pack()
 pip_quit.pack()
 
