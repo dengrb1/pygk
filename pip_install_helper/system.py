@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import time
 import os
+import webbrowser
 
 
 root = Tk()
@@ -81,7 +82,7 @@ def update_root(e):
     1.5 新增wxpython库安装和删除
     1.6 加入关于模块
     1.7 新增一个小彩蛋
-    stop 本程序是最后一次更新，此版本已完结''')
+    stop 本程序将在2023年3月20日正式终止更新''')
     la_3 = Label(update_window_1, text="当前版本：1.5")
     la_1.pack()
     la_2.pack()
@@ -179,8 +180,16 @@ def gk(e):
     本程序已停止了更新，请前往github仓库下载最新的pip安装助手重置版
 
     @ 2023-2024 由pygk团队的dengrb1拥有所有权''')
+    def open(_=None):
+        webbrowser.open('https://github.com/dengrb1/pygk')
+        pass
+    def quit_gk(e):
+        gk_window.destroy()
+        pass
     gk_1.pack()
     gk_2.pack()
+    open_url = Button(gk_window, text='打开GitHub仓库', command=open).pack()
+    quit_bt = Button(gk_window, text='返回', command=quit_gk).pack()
     gk_window.title('关于')
     gk_window.geometry('310x300')
     gk_window.mainloop()
@@ -191,7 +200,7 @@ pip_gk.bind('<Button-1>', gk)
 # 彩蛋程序
 pip_cd = Button(root , text='彩蛋解锁')
 def cd(e):
-    messagebox.showinfo('彩蛋', '梁子依是sb中的sb中的大大大sb')
+    messagebox.showinfo('彩蛋', '彩蛋已删除，你来晚了')
     pass
 pip_cd.bind('<Button-1>', cd)
 

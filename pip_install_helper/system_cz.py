@@ -1,11 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 import os
+import webbrowser
 
 
 root = Tk()
 ok = '安装完成'
 ok2 = '删除完成'
+uninstall = 'pip uninstall'
+install_1 = 'pip install'
 
 
 # 安装模式
@@ -27,6 +30,7 @@ def install(e):
         pass
     def pyqt(e):
         os.system('pip install pyqt5')
+        os.system('pip install PyQtWebEngine')
         messagebox.showinfo('pip install', ok)
         pass
     def Requests(e):
@@ -41,12 +45,17 @@ def install(e):
         os.system('pip install nuitka')
         messagebox.showinfo('pip install', ok)
         pass
+    def pywin32(e):
+        os.system('pip install pywin32')
+        messagebox.showinfo(install_1, ok)
+        pass
     pip_pyqt.bind('<Button-1>', pyqt)
     pip_pygame.bind('<Button-1>', pygame)
     pip_pyinstaller.bind('<Button-1>', pyinstaller)
     pip_Requests.bind('<Button-1>', Requests)
     pip_wxpython.bind('<Button-1>', wxpython)
     pip_nuitka = Button(install, text='nuitka安装', command=nuitka)
+    pip_pywin32 = Button(install, text='pywin32安装', command=pywin32)
     # 载入按钮
     pip_pyqt.pack()
     pip_pygame.pack()
@@ -54,6 +63,7 @@ def install(e):
     pip_Requests.pack()
     pip_pyinstaller.pack()
     pip_nuitka.pack()
+    pip_pywin32.pack()
     # 初始化程序
     install.title('安装模式')
     install.geometry('200x200')
@@ -89,19 +99,39 @@ def remove_ms(e):
         pass
     def pyqt_remove(e):
         os.system('pip uninstall pyqt5')
+        os.systen('pip uninstall PyQtWebEngine')
         messagebox.showinfo('pip uninstall', ok2)
+        pass
+    def tqdm_remove(e):
+        os.system('pip uninstall tqdm')
+        messagebox.showinfo('pip uninstall', ok2)
+        pass
+    def nuitka_remove(e):
+        os.system('pip uninstall nuitka')
+        messagebox.showinfo(uninstall, ok2)
+        pass
+    def pywin32_remove(e):
+        os.system('pip uninstall pywin32')
+        messagebox.showinfo(uninstall, ok2)
+        pass
     # 定义按钮的def
     remove_pyqt.bind('<Button-1>', pyqt_remove)
     remove_pygame.bind('<Button-1>', pygame_remove)
     remove_pyinstaller.bind('<Button-1>', pyinstaller_remove)
     remove_Requests.bind('<Button-1>', Requests_remove)
     remove_wxpython.bind('<Button-1>', wxpython_remove)
+    remove_tqdm = Button(remove, text='tqdm删除', command=tqdm_remove)
+    remove_nuitka = Button(remove, text='nuitka删除', command=nuitka_remove)
+    remove_pywin32 = Button(remove, text='pywin32删除', command=pywin32_remove)
     # 加载按钮位置
     remove_pyqt.pack()
     remove_pygame.pack()
     remove_wxpython.pack()
     remove_Requests.pack()
-    remove_pyinstaller.pack()   
+    remove_pyinstaller.pack()
+    remove_tqdm.pack()
+    remove_nuitka.pack()
+    remove_pywin32.pack()   
     # 初始化程序
     remove.title('删除模式')
     remove.geometry('200x200')
@@ -131,6 +161,7 @@ def update(e):
     update_window_1.geometry('400x200')
     update_window_1.mainloop()
     pass
+root_update.bind('<Button-1>', update)
 
 
 # 关于模块
@@ -143,8 +174,16 @@ def gk(e):
     作者GitHub：https://github.com/dengrb1
 
     @ 2023-2024 由pygk团队的dengrb1拥有所有权''')
+    def quit_gk(_=None):
+        gk_window.destroy()
+        pass
+    def open_url(_=None):
+        webbrowser.open('https://github.com/dengrb1/pygk')
+        pass
     gk_1.pack()
     gk_2.pack()
+    open_web = Button(gk_window, text='打开GitHub仓库地址', command=open_url).pack()
+    quit_gk_bt = Button(gk_window, text='返回', command=quit_gk).pack()        
     gk_window.title('关于')
     gk_window.geometry('310x300')
     gk_window.mainloop()
@@ -161,9 +200,9 @@ pip_cd.bind('<Button-1>', cd)
 
 
 # 退出模块
-def exit_pip(e):
+def exit_pip(_=None):
     messagebox.showwarning('pip helper', '程序正在退出')
-    exit()
+    root.destroy()
     pass
 pip_exit = Button(root, text='退出', command=exit_pip)
 

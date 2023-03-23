@@ -1,5 +1,6 @@
 # 初始化程序
 import os
+import webbrowser
 import time
 
 
@@ -41,6 +42,7 @@ while 1:
                 pass
             elif xz_install == 3:
                 os.system(pyqt_setup)
+                os.system('pip install PyQtWebEngine')
                 print(setup_ok)
                 time.sleep(1)
                 pass
@@ -87,6 +89,7 @@ while 1:
                 pass
             elif xz_remove == 3:
                 os.system(remove_pyqt5)
+                os.system('pip uninstall PyQtWebEngine')
                 print(remove)
                 time.sleep(1)
                 pass
@@ -147,16 +150,18 @@ while 1:
             作者GitHub：https://github.com/dengrb1
 
             @ 2023-2024 由pygk团队的dengrb1拥有所有权''')
+            if int(input('是否打开GitHub仓库地址？' + '1是，2不是')) == 1:
+                webbrowser.open('https://github.com/dengrb1/pygk')
+                pass
+            else:
+                pass  
             if int(input('继续看?' + '1是，2不是')) == 1:
                 continue
             else:
                 break
         pass
     elif xz == 5:
-        print('程序正在退出')
-        time.sleep(0.5)
-        exit()
-        pass          
+        break          
     pass
 
 
